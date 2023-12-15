@@ -12,15 +12,16 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function getSeason(date) {
-  if (
-    Object.prototype.toString.call(date) !== "[object Date]" ||
-    !(date instanceof Date)
-  ) {
-    throw new Error("Invalid date!");
-  }
   if (!date) {
     throw new Error("Unable to determine the time of year!");
   }
+  const target = JSON.stringify(
+    Object.getOwnPropertyNames(new Date("2000-01-17T16:45:30")).sort(),
+  );
+  if (JSON.stringify(Object.getOwnPropertyNames(date).sort()) !== target) {
+    throw new Error("Invalid date!");
+  }
+
   const seasons = {
     winter: [11, 0, 1],
     spring: [2, 3, 4],
