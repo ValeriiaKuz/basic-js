@@ -13,7 +13,10 @@ const { NotImplementedError } = require("../extensions/index.js");
  */
 function getSeason(date) {
   if (!date) {
-    throw new Error("Unable to determine the time of year!");
+    return "Unable to determine the time of year!";
+  }
+  if (typeof date !== "object") {
+    throw new Error("Invalid date!");
   }
   const target = JSON.stringify(
     Object.getOwnPropertyNames(new Date("2000-01-17T16:45:30")).sort(),
